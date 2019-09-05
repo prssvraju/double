@@ -5,6 +5,7 @@
  Version     :
  Copyright   : Your copyright notice
  Description : Hello World in C, Ansi-style
+ //srinvas sir
  ============================================================================
  */
 
@@ -24,7 +25,8 @@ struct Node
 {
    int data;
    struct Node *previous, *next;
-}*head = NULL;
+};
+struct Node *head = NULL;
 
 int main()
 {
@@ -79,12 +81,14 @@ int main()
                        default: printf("\nPlease select correct Deleting option!!!\n");
                        	   goto mainMenu;
                     }
+                    goto EndSubMenu2;
                  }
+         	 	 EndSubMenu2:
          		break;
          case 3:
         	 printf("---Forward-----");
         	 display();
-        	 printf("---Reverse-----");
+        	 printf("\n---Reverse-----");
         	 dispalyRev();
          	 break;
          case 4: exit(0);
@@ -151,9 +155,11 @@ void insertAtAfter(int value, int location)
    struct Node *newNode;
    newNode = (struct Node*)malloc(sizeof(struct Node));
    newNode -> data = value;
+   newNode -> previous = NULL;
+   newNode -> next = NULL;
    if(head == NULL)
    {
-      newNode -> previous = newNode -> next = NULL;
+
       head = newNode;
    }
    else
@@ -207,7 +213,9 @@ void deleteEnd()
       }
       else{
          while(temp -> next != NULL)
+         {
             temp = temp -> next;
+         }
          temp -> previous -> next = NULL;
          free(temp);
       }
